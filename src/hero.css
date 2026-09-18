@@ -1,0 +1,28 @@
+.cyber-hero{margin-top:24px;margin-bottom:24px;max-width:1160px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0;background:#071b3d;border:1px solid #163a65;border-radius:18px;overflow:hidden;position:relative;color:#fff;isolation:isolate}
+.cyber-hero .hero-copy{padding:30px 0 30px 34px;z-index:2;background:linear-gradient(110deg,#081a3e,#0a244b);position:relative}
+.cyber-hero .eyebrow{color:#75dfff;font-size:.68rem;margin:0;letter-spacing:.12em}
+.cyber-hero .eyebrow>span{background:#24d4f6;box-shadow:0 0 13px #24d4f6}
+.cyber-hero h1{font-size:clamp(2rem,3.3vw,2.8rem);line-height:1.13;letter-spacing:-.045em;margin:15px 0 13px}
+.cyber-hero h1 em{color:#30d1f1}
+.cyber-hero .hero-copy>p{font-size:.94rem;line-height:1.6;color:#c0d1e7;margin-bottom:19px}
+.cyber-hero .hero-classroom{position:relative;min-width:0;align-self:stretch;min-height:325px}
+.hero-classroom img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:48% 42%}
+.hero-classroom:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#0a244b 0%,#0a244b00 22%),linear-gradient(0deg,#061e3c44,transparent 50%);pointer-events:none}
+.cyber-hero .searchbox{border:1px solid #4173a8;border-radius:9px;padding:5px 5px 5px 12px;box-shadow:0 0 20px #00ccff10;margin-right:12px}
+.cyber-hero .searchbox input{font-size:.875rem;color:#173550}
+.cyber-hero .searchbox .button{background:#096ac6;min-height:40px;padding:10px 13px}
+.cyber-hero .searchbox .button:hover{background:#085aab}
+.cyber-hero .hero-meta{color:#b5cce5;font-size:.75rem;gap:19px;margin-top:13px}
+.cyber-hero .hero-meta svg{color:#35d6f3}
+.subjects-section{padding:21px 0 14px;background:#fff;border-top:1px solid #e5edf4;border-bottom:1px solid #e5edf4}
+.subjects-section .section-title{margin-bottom:13px;align-items:center}
+.subjects-section .section-title h2{font-size:1.1rem;letter-spacing:-.025em}
+.subjects-section .text-link{color:#0867b4}
+.subject-strip{display:flex;flex-wrap:nowrap;gap:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#9dc6e5 transparent;padding:4px 3px 12px;scroll-padding-inline:6px;-webkit-overflow-scrolling:touch}
+.subject-text{display:block;flex:0 0 auto;white-space:nowrap;font-size:.875rem;font-weight:500;color:#36536c;padding:7px 22px;border-right:1px solid #dce7f0;line-height:1.4}
+.subject-text:first-child{padding-left:0}.subject-text:last-child{border:0;padding-right:6px}
+.subject-text:hover{color:#006cc2;text-decoration:underline;text-underline-offset:5px}
+.subject-text:focus-visible{outline-offset:-1px;border-radius:3px}
+@media(max-width:1240px){.cyber-hero{margin-left:28px;margin-right:28px}.cyber-hero .hero-copy{padding-left:26px}.cyber-hero .hero-classroom{min-height:320px}}
+@media(max-width:850px){.cyber-hero{grid-template-columns:1.1fr 1fr}.cyber-hero .hero-copy{padding:25px 0 25px 24px}.cyber-hero h1{font-size:2.1rem}.cyber-hero .hero-copy>p{font-size:.875rem}.cyber-hero .hero-meta{gap:6px 12px}.cyber-hero .hero-classroom{min-height:305px}.cyber-hero .searchbox input{font-size:.8rem}.hero-classroom img{object-position:40% center}}
+@media(max-width:639px){.cyber-hero{margin:18px 22px;display:flex;flex-direction:column;border-radius:14px}.cyber-hero .hero-copy{padding:23px 21px 20px;background:#081e42}.cyber-hero .eyebrow{font-size:.6rem}.cyber-hero h1{font-size:2rem;margin:12px 0}.cyber-hero .hero-copy>p{font-size:.875rem;line-height:1.6;margin-bottom:16px}.cyber-hero .searchbox{margin-right:0}.cyber-hero .searchbox input{font-size:.8rem}.cyber-hero .searchbox .button{padding:10px 12px}.cyber-hero .hero-meta{justify-content:flex-start;gap:8px 12px;font-size:.7rem}.cyber-hero .hero-classroom{min-height:155px;height:155px;width:100%}.hero-classroom img{object-position:50% 35%}.hero-classroom:after{background:linear-gradient(180deg,#081e42,transparent 22%)}.subjects-section{padding:17px 0 8px}.subjects-section .section-title h2{font-size:1rem}.subjects-section .section-title>.text-link{font-size:.8rem}.subject-text{padding:7px 17px}.subject-strip{padding-bottom:11px}}
