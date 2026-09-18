@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://galeri-cyber-ai.gantboy3.chatgpt.site/sitemap.xml
