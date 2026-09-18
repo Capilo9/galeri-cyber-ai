@@ -24,7 +24,7 @@ Sheet wajib bernama **MateriGuruSD**, dengan urutan 17 kolom dari `HEADERS` di b
 ## Keamanan dan operasional
 
 - GET memakai daftar field publik eksplisit. POST create selalu membuat ID baru, mengabaikan ID/penghitung/unggulan dari client, dan menggunakan lock. Counter hanya memperbarui satu sel.
-- Honeypot, payload maksimum 20 KB, validasi server, netralisasi formula, batas laju, serta deduplikasi 10 menit. Pengiriman ulang identik mengembalikan ID yang sudah tersimpan.
+- Honeypot, payload selain deskripsi maksimum 20 KB, validasi server, netralisasi formula, batas laju, serta deduplikasi 10 menit. Pengiriman ulang identik mengembalikan ID yang sudah tersimpan.
 - Rate limit berdasarkan identitas ringan dapat dihindari; bukan autentikasi. Ada batas global create untuk mengurangi spam. Sesuaikan angka dengan trafik nyata.
 - Suka menggunakan penanda browser setelah sukses; view dibatasi 30 menit per karya per browser. Angka bukan statistik audit.
 - Karya hanya disimpan pada Google Sheets. Browser menyimpan respons di memori, bukan salinan permanen. Create berhasil memuat ulang daftar.
@@ -34,3 +34,7 @@ Sheet wajib bernama **MateriGuruSD**, dengan urutan 17 kolom dari `HEADERS` di b
 ## Verifikasi
 
 `npm test` menjalankan validator, filter, sort, sanitasi, serta simulasi Apps Script untuk privasi GET dan operasi tulis. Uji lokal tidak menggantikan uji Apps Script langsung. Pengujian produksi yang membuat karya nyata perlu dilakukan pengelola agar tidak menambahkan karya uji ke galeri.
+
+## Pembaruan deskripsi
+
+Deskripsi wajib minimal 30 karakter tanpa batas maksimum dari aplikasi. Batas ukuran payload 20 KB hanya berlaku untuk field selain deskripsi; batas bawaan layanan penyimpanan tetap berlaku. Ganti kode Apps Script dengan versi terbaru `backend/Code.gs`, lalu perbarui deployment yang sama agar validator server sesuai dengan formulir.

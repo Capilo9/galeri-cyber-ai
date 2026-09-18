@@ -21,7 +21,8 @@ function https_(value){
 }
 function driveId_(s){var u=https_(s);if(!u||u.host!=='drive.google.com')return '';var m=u.path.match(/^\/file\/d\/([\w-]{10,})(?:[/?#]|$)/);if(m)return m[1];if(!/^\/(open|uc|thumbnail)\?/.test(u.path))return '';m=u.path.match(/[?&]id=([\w-]{10,})(?:[&#]|$)/);return m?m[1]:'';}
 function validate_(raw){var v={},errors={};['title','description','creatorName','creatorSchool','category','gradeClass','link','aiStudioLink','thumbnail','literacySheetFile','literacySheetName'].forEach(function(k){v[k]=clean_(raw[k])});v.tags=Array.isArray(raw.tags)?raw.tags.map(clean_):[];
-  [['title',5,120],['description',30,500],['creatorName',2,100],['creatorSchool',2,150],['literacySheetName',3,120]].forEach(function(r){if(v[r[0]].length<r[1]||v[r[0]].length>r[2])errors[r[0]]='Isi '+r[1]+'–'+r[2]+' karakter.'});
+  [['title',5,120],['creatorName',2,100],['creatorSchool',2,150],['literacySheetName',3,120]].forEach(function(r){if(v[r[0]].length<r[1]||v[r[0]].length>r[2])errors[r[0]]='Isi '+r[1]+'–'+r[2]+' karakter.'});
+  if(v.description.length<30)errors.description='Isi minimal 30 karakter.';
   if(SUBJECTS.indexOf(v.category)<0)errors.category='Pilih mata pelajaran.';
   if(!/^Kelas [1-6]$/.test(v.gradeClass))errors.gradeClass='Pilih kelas.';
   if(v.tags.length<1||v.tags.length>8||v.tags.some(function(t){return t.length<2||t.length>30||t.indexOf(',')>=0}))errors.tags='Isi 1–8 tag, masing-masing 2–30 karakter.';
@@ -40,7 +41,7 @@ function doGet(){try{var s=getOrCreateSheet();var rows=s.getLastRow()>1?s.getRan
 function hash_(s){return Utilities.base64EncodeWebSafe(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256,s)).slice(0,36);}
 function rate_(cache,key,max,ttl){var n=Number(cache.get(key)||0);if(n>=max)failure_('RATE_LIMITED','Terlalu banyak permintaan. Silakan coba lagi nanti.');cache.put(key,String(n+1),ttl);}
 function doPost(e){var action='unknown',lock=null;try{
-  var body=e&&e.postData&&e.postData.contents;if(typeof body!=='string'||Utilities.newBlob(body).getBytes().length>20480)failure_('VALIDATION_ERROR','Data kiriman tidak valid.');var p;try{p=JSON.parse(body)}catch(ex){failure_('VALIDATION_ERROR','Format kiriman tidak valid.');}if(!p||Array.isArray(p)||typeof p!=='object')failure_('VALIDATION_ERROR','Format kiriman tidak valid.');action=p.action;if(['create','view','like'].indexOf(action)<0)failure_('INVALID_ACTION','Aksi tidak dikenali.');
+  var body=e&&e.postData&&e.postData.contents;if(typeof body!=='string')failure_('VALIDATION_ERROR','Data kiriman tidak valid.');var p;try{p=JSON.parse(body)}catch(ex){failure_('VALIDATION_ERROR','Format kiriman tidak valid.');}if(!p||Array.isArray(p)||typeof p!=='object')failure_('VALIDATION_ERROR','Format kiriman tidak valid.');var boundedPayload=Object.assign({},p);if(p.action==='create')delete boundedPayload.description;if(Utilities.newBlob(JSON.stringify(boundedPayload)).getBytes().length>20480)failure_('VALIDATION_ERROR','Data kiriman tidak valid.');action=p.action;if(['create','view','like'].indexOf(action)<0)failure_('INVALID_ACTION','Aksi tidak dikenali.');
   if(action==='create'&&p.website)failure_('VALIDATION_ERROR','Data kiriman tidak valid.');var v=action==='create'?validate_(p):null;if(action!=='create'&&(typeof p.id!=='string'||p.id.length>150||!p.id))failure_('VALIDATION_ERROR','ID karya tidak valid.');
   lock=LockService.getScriptLock();if(!lock.tryLock(10000))failure_('RATE_LIMITED','Sistem sedang sibuk. Silakan coba lagi.');var s=getOrCreateSheet(),cache=CacheService.getScriptCache(),rows=s.getLastRow()>1?s.getRange(2,1,s.getLastRow()-1,17).getValues():[],result;
   if(action==='create'){
