@@ -38,3 +38,7 @@ Sheet wajib bernama **MateriGuruSD**, dengan urutan 17 kolom dari `HEADERS` di b
 ## Pembaruan deskripsi
 
 Deskripsi wajib minimal 30 karakter tanpa batas maksimum dari aplikasi. Batas ukuran payload 20 KB hanya berlaku untuk field selain deskripsi; batas bawaan layanan penyimpanan tetap berlaku. Ganti kode Apps Script dengan versi terbaru `backend/Code.gs`, lalu perbarui deployment yang sama agar validator server sesuai dengan formulir.
+
+## Thumbnail lintas format
+
+Pasang Code.gs terbaru dan perbarui deployment Apps Script yang sama. GET kini menerima link file Drive, lh3–lh6.googleusercontent.com/d/ID, dan URL gambar HTTPS langsung (misalnya i.postimg.cc). Link Drive dinormalisasi. Link folder, gabungan URL rusak, dan halaman freeimage.host/i/ bukan file gambar: ganti dengan tautan gambar langsung. Akses file harus publik. Tidak ada pengambilan Sheet mentah dari frontend sehingga kolom internal tetap tidak terkirim.
