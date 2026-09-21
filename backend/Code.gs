@@ -76,7 +76,7 @@ function validate_(raw){var v={},errors={};['title','description','creatorName',
   if(!/^Kelas [1-6]$/.test(v.gradeClass))errors.gradeClass='Pilih kelas.';
   if(v.tags.length<1||v.tags.length>8||v.tags.some(function(t){return t.length<2||t.length>30||t.indexOf(',')>=0}))errors.tags='Isi 1–8 tag, masing-masing 2–30 karakter.';
   if(!https_(v.link))errors.link='Gunakan URL HTTPS publik yang valid.';
-  var internal=https_(v.aiStudioLink);if(!internal||internal.host!=='')errors.aiStudioLink='Gunakan link HTTPS dari aistudio.google.com.';
+  if(!https_(v.aiStudioLink))errors.aiStudioLink='Gunakan URL HTTPS publik yang valid.';
   if(!thumbnail_(v.thumbnail))errors.thumbnail='Gunakan link file Drive atau URL gambar HTTPS langsung.';if(!driveId_(v.literacySheetFile))errors.literacySheetFile='Gunakan link file Google Drive yang valid.';
   if(Object.keys(errors).length)failure_('VALIDATION_ERROR','Data belum valid.',errors);
   v.thumbnail=thumbnail_(v.thumbnail);return v;
